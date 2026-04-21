@@ -1,1 +1,1 @@
-Ini isi awal jurnal 
+Baris ini diubah di CABANG KONFLIK 
