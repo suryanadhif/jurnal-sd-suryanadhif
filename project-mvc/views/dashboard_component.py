@@ -1,4 +1,9 @@
-def render_dashboard(data_list):
+def render_dashboard(data_list, is_loading=False):
+
+    if is_loading:
+        print("Mohon Tunggu...")
+        return
+
     print("--- DASHBOARD APLIKASI ---")
 
     if not data_list:
