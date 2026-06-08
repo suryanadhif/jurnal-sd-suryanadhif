@@ -1,10 +1,26 @@
+def fetch_data_from_api(api_function):
+    print("[System] Mencoba menghubungkan ke API...")
+
+    try:
+        response = api_function()
+
+        if response["status"] == "success":
+            return response["data"]
+        else:
+            raise Exception("API Return Error")
+
+    except Exception as e:
+        print(f"[Error] Gagal Integrasi: {e}")
+        return None
+
+
 def render_dashboard(data_list, is_loading=False):
 
     if is_loading:
         print("Mohon Tunggu...")
         return
 
-    print("--- DASHBOARD APLIKASI ---")
+    print("\n--- DASHBOARD APLIKASI ---")
 
     if not data_list:
         print("[!] Data Kosong. Silakan sinkronisasi dengan Backend.")
