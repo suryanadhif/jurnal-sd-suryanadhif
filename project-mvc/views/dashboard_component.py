@@ -1,16 +1,33 @@
 def fetch_data_from_api(api_function):
+
     print("[System] Mencoba menghubungkan ke API...")
 
     try:
+
         response = api_function()
 
         if response["status"] == "success":
             return response["data"]
+
         else:
-            raise Exception("API Return Error")
+
+            error_message = response.get(
+                "message",
+                "Error tidak diketahui"
+            )
+
+            print(
+                f"[Error] API Mengembalikan Error: {error_message}"
+            )
+
+            return None
 
     except Exception as e:
-        print(f"[Error] Gagal Integrasi: {e}")
+
+        print(
+            f"[Error] Gagal terhubung ke Backend: {e}"
+        )
+
         return None
 
 
@@ -26,4 +43,6 @@ def render_dashboard(data_list, is_loading=False):
         print("[!] Data Kosong. Silakan sinkronisasi dengan Backend.")
     else:
         for item in data_list:
-            print(f"- Item ID: {item['id']} | Nama: {item['name']}")
+            print(
+                f"- Item ID: {item['id']} | Nama: {item['name']}"
+            )
